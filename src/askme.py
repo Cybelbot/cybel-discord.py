@@ -1,5 +1,5 @@
 import spacy
-spacy.load('en')
+spacy.load('en_core_web_sm')
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
 

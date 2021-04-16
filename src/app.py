@@ -43,7 +43,7 @@ async def on_message(message):
     msg_content = message.content.lower()
 
     if msg_content.startswith('!ping'):
-        await message.content.channel.send("Pong")
+        await message.channel.send("Pong")
     if msg_content.startswith('!pong'):
         await message.channel.send("Ping")
 
