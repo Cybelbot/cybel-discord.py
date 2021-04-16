@@ -1,6 +1,3 @@
-import en_core_web_sm
-en_core_web_sm.load()
-
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
 
