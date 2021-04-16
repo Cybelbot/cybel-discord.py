@@ -5,7 +5,13 @@
 
 ## Invite in Your Discord Server
 
-Invite [Cybel](https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permissions=268446835&scope=bot) in your server [here](https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permissions=268446835&scope=bot)
+Invite **Cybel** into your server 
+- [Cybel Stable](https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permissions=268446835&scope=bot)
+- [Cybel Beta](https://discord.com/api/oauth2/authorize?client_id=831918257166090250&permissions=4231265367&scope=bot)
+
+#### **Cybel Stable** is Stable release and has uptime upto 99%. It may has not have latest feature.
+
+#### **Cybel Beta** has **experimental** and advance feature. But it may be break and doesn't have 100% uptime.
 
 ## Bot Commands
 
