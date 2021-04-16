@@ -17,6 +17,7 @@ from discord.ext import commands
 import requests
 from dotenv import load_dotenv
 
+from askme import askMe
 load_dotenv()
 print(f'Discord Version : {discord.__version__}')
 
@@ -133,8 +134,6 @@ async def weather(ctx, *args):
         await ctx.send("I didn't find your City")
 
 
-from askme import askMe
-
 @bot.command(name="cybel")
 async def cybel(ctx, *args):
     """ I am Cybel. Ask me question related of science, math and general conversation """
@@ -145,7 +144,7 @@ async def cybel(ctx, *args):
 
 @bot.command(name="q")
 async def questionMe(ctx, *args):
-    """ I am your bot. Ask me Any Question """
+    """ I am Cybel. Ask me question related of science, math and general conversation """
     userQuestion = ' '.join(args)
     print(userQuestion)
     botResponse = askMe(userQuestion)
