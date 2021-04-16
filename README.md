@@ -19,6 +19,8 @@ Invite [Cybel](https://discord.com/api/oauth2/authorize?client_id=83213782330900
 | **ping**             |  Ping-Pong function to test the bot status        |  !ping                |
 | **roll**             |  Roll a dice in ndn format                        |  !roll 5d6            |
 | **weather**          |  Function to get your city weather                |  !weather new delhi   |
+| **cybel**            |  Ask me Question related to science, Math         |  !cyble What is thermodynamics |
+| **q**                |  same as cybel do                                 |  !q What is thermodynamics |
 | **Upcoming Commands**|  Work in progress                                 |  Stay Tuned           |
 
 for more detils check `!help <command_name>` in server.

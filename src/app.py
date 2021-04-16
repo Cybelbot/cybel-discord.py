@@ -133,6 +133,24 @@ async def weather(ctx, *args):
         await ctx.send("I didn't find your City")
 
 
+from askme import askMe
+
+@bot.command(name="cybel")
+async def cybel(ctx, *args):
+    """ I am Cybel. Ask me question related of science, math and general conversation """
+    userQuestion = ' '.join(args)
+    print(userQuestion)
+    botResponse = askMe(userQuestion)
+    await ctx.send(botResponse)
+
+@bot.command(name="q")
+async def questionMe(ctx, *args):
+    """ I am your bot. Ask me Any Question """
+    userQuestion = ' '.join(args)
+    print(userQuestion)
+    botResponse = askMe(userQuestion)
+    await ctx.send(botResponse)
+
 """ Credits """
 bot_details = f'''BotName:- Cybel\n\
 Creator:- Deepak Raj\n\
@@ -144,7 +162,7 @@ GitHub:- https://github.com/codeperfectplus'''
 async def bot_info(ctx):
     """ Information about the Bot and credits """
     await ctx.send(bot_details)
-    
+
 
 if __name__ == '__main__':
     bot.run(TOKEN)
