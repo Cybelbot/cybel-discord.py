@@ -16,17 +16,23 @@ Invite **Cybel** into your server
 
 ### Stable Version Commands
 
-| command name          |              Use Of commands              | Example            |
-| --------------------- | :---------------------------------------: | :----------------- |
-| **help**              |       Get the list of all commands        | !help              |
-| **add**               |          Add two number together          | !add 5 5           |
-| **fact**              |       function to send random fact        | !fact              |
-| **joke**              |       function to send random joke        | !joke              |
-| **quote**             |       function to send random quote       | !quote             |
-| **ping**              | Ping-Pong function to test the bot status | !ping              |
-| **roll**              |         Roll a dice in ndn format         | !roll 5d6          |
-| **weather**           |     Function to get your city weather     | !weather new delhi |
-| **Upcoming Commands** |             Work in progress              | Stay Tuned         |
+| command name          |               Use Of commands               | Example              |
+| --------------------- | :-----------------------------------------: | :------------------- |
+| **help**              |        Get the list of all commands         | !help                |
+| **add**               |           Add two number together           | !add 5 5             |
+| **fact**              |        function to send random fact         | !fact                |
+| **joke**              |        function to send random joke         | !joke                |
+| **quote**             |        function to send random quote        | !quote               |
+| **ping**              |  Ping-Pong function to test the bot status  | !ping                |
+| **roll**              |          Roll a dice in ndn format          | !roll 5d6            |
+| **weather**           |      Function to get your city weather      | !weather new delhi   |
+| **cats**              |         Get Random picture of Cats          | !cats                |
+| **dogs**              |        Get Random pictures of Dogs.         | !dogs                |
+| **gh**                |            get Github user data             | !gh <username>       |
+| **ifsc**              | Get Indian bank branch details by IFSC code | !ifsc <ifsc_code>    |
+| **surl**              |            Shorten your web url             | !surl <website_name> |
+| **info**              |    Information about the Bot and Credits    | !info                |
+| **Upcoming Commands** |              Work in progress               | Stay Tuned           |
 
 ### Beta Version Commands(including above)
 
