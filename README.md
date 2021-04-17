@@ -6,8 +6,11 @@
 ## Invite in Your Discord Server
 
 Invite **Cybel** into your server 
+
 - [Cybel Stable](https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permissions=142337&scope=bot)
 - [Cybel Beta](https://discord.com/api/oauth2/authorize?client_id=831918257166090250&permissions=142337&scope=bot)
+
+##### **Cybel Beta** May have some bugs with some experimental features.
 
 ## Bot Commands
 
