@@ -94,7 +94,7 @@ async def unban(ctx, *, member_id:int):
 	await ctx.send(f"Unban {member_id}")
 
 
-@bot.command()
+@bot.command(name="create_invite", help='create instant invite')
 async def create_invite(ctx):
 	""" Create instant invite for Channel """
 	link = await ctx.channel.create_invite(max_age = 0)
