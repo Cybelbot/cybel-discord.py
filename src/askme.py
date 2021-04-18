@@ -28,5 +28,3 @@ def askMe(question):
 	bot_respose = chatbot.get_response(question)
 
 	return bot_respose
-
-print(askMe("Can you share me your source code?"))
