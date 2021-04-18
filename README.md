@@ -10,8 +10,6 @@ Invite **Cybel** into your server
 - [Cybel Stable](https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permissions=142337&scope=bot)
 - [Cybel Beta](https://discord.com/api/oauth2/authorize?client_id=831918257166090250&permissions=142337&scope=bot)
 
-##### **Cybel Beta** May have some bugs with some experimental features.
-
 ## Bot Commands
 
 ### Stable Version Commands
@@ -36,22 +34,27 @@ Invite **Cybel** into your server
 | **server**            |     to get the information about server     | !server                    |
 | **Upcoming Commands** |              Work in progress               | Stay Tuned                 |
 
+![Conversation with Cybel](images/sample.png)
+
 ### Beta Version Commands(including above)
 
 | command name |  Use Of commands   | Example                       |
 | ------------ | :----------------: | :---------------------------- |
 | **cybel**    | AI Enabled ChatBot | !cyble What is thermodynamics |
 
-![Conversation with Cybel](images/sample.png)
+![Conversation with Cybel](images/sample2.png)
 
-for more detils check `!help <command_name>` in server.
+**Note**:- Cybel Beta may have some bugs, broken features and experimental commands.
+
+for more details check `!help <command_name>` in server.
 
 ## Upcoming Feature
 
-- Create Instant Invite
-- Kick/Ban User
+- AI Enabled ChatBot(In Beta Version)
 - Curse word deletion
 - Role Upgrade
+- ~~Create Instant Invite~~
+- ~~Kick/Ban User~~
 - more...
 
 - Add/Suggest a feature by making issues.
