@@ -77,9 +77,9 @@ async def _kick(ctx, user: discord.Member, *, reason=None):
         await ctx.message.delete()
         kick = discord.Embed(title=f":boot: Kicked {user.name}!",
                              description=f"Reason: {reason}\nBy: {ctx.author.mention}")
-        await ctx.channel.send(embed=kick)
+        await ctx.send(embed=kick)
     except Exception:
-        await ctx.channel.send(f"{BOTNAME} doesn't have enough permission to kick someone.")
+        await ctx.send(f"{BOTNAME} doesn't have enough permission to kick someone.")
 
 
 @bot.command(name="ban", help="command to ban user")
@@ -90,9 +90,9 @@ async def _ban(ctx, member: discord.Member, *, reason=None):
         await member.ban(reason=reason)
         ban = discord.Embed(title=f":boom: Banned {member.name}!", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
         await ctx.message.delete()
-        await ctx.channel.send(embed=ban)
+        await ctx.send(embed=ban)
     except Exception:
-        await ctx.channel.send(f"{BOTNAME} doesn't have enough permission to ban someone.")
+        await ctx.send(f"{BOTNAME} doesn't have enough permission to ban someone.")
 
 
 @bot.command(name="unban", help="command to unban user")
@@ -111,14 +111,15 @@ async def _chnick(ctx, member: discord.Member, nick):
         await member.edit(nick=nick)
         await ctx.send(f'Nickname was changed for {member.mention} ')
     except Exception:
-        await ctx.channel.send(f"{BOTNAME} doesn't have enough permission to change nickname")
+        await ctx.send(f"{BOTNAME} doesn't have enough permission to change nickname")
 
 
 @bot.command(name="create_invite", help='create instant invite')
 async def _create_invite(ctx):
     """ Create instant invite for Channel """
     link = await ctx.channel.create_invite(max_age=0)
-    await ctx.send("Here is an instant invite to your server: " + str(link))
+    currentUser = ctx.author
+    await ctx.send(f"Hi! {currentUser.mention} \nHere is an instant invite to your server: \n{str(link)}" )
 
 
 # Command using external APIs
