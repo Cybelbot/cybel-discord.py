@@ -27,7 +27,6 @@ Invite **Cybel** into your server
 | **roll**              |          Roll a dice in ndn format          | !roll 5d6            |
 | **gh**                |            get Github user data             | !gh <username>       |
 | **ifsc**              | Get Indian bank branch details by IFSC code | !ifsc <ifsc_code>    |
-| **surl**              |            Shorten your web url             | !surl <website_name> |
 | **weather**           |          Get Weather of your City           | !weather <city_name> |
 | **Upcoming Commands** |              Work in progress               | Stay Tuned           |
 

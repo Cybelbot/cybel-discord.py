@@ -106,17 +106,6 @@ async def rollTheDice(ctx, dice: str):
 	await ctx.send(result)
 
 
-@bot.command(name="surl", help="shorten your url. use https/http")
-async def getShortenURL(ctx, website: str):
-	""" Shorten Your Url using cleanURL API !surl <website> """
-	async with ctx.typing():
-		cleanAPIURL = 'https://cleanuri.com/api/v1/shorten'
-		async with aiohttp.ClientSession() as session:
-			async with session.post(cleanAPIURL, data={'url': website}) as session:
-				shortUrl = await response.json()['result_url']
-				await ctx.send(f"Your Short URL is\n{shortURL}")
-
-
 @bot.command(name="gh", help="get Github user data")
 async def getGihubUserData(ctx, username: str):
 	""" Get Github User Data Using !gh username """
@@ -131,12 +120,12 @@ async def getGihubUserData(ctx, username: str):
 @bot.command(name="ifsc", help="Get Indian Bank Branch details by IFSC Code")
 async def getBankDataByIFSC(ctx, ifsc_code: str):
 	""" Get Bank Details by IFSC CODE In INdia !ifsc <ifsc_code> """
-	url = f"https://ifsc.razorpay.com/{ifscCode}"
+	url = f"https://ifsc.razorpay.com/{ifsc_code}"
 	async with ctx.typing():
 		async with aiohttp.ClientSession() as session:
 			async with session.get(url) as response:
 				bankData = await response.json()
-				await ctx.send(f'Branch: {bankData["BRANCH"]}\n\Bank: {bankData["BANK"]}\nDistrict: {bankData["DISTRICT"]}\nState: {bankData["STATE"]}\nContact Number: {bankData["CONTACT"]}')
+				await ctx.send(f'Branch: {bankData["BRANCH"]}\nBank: {bankData["BANK"]}\nDistrict: {bankData["DISTRICT"]}\nState: {bankData["STATE"]}\nContact Number: {bankData["CONTACT"]}')
 
 
 @bot.command(name="weather", help="weather of world at your command")
@@ -166,7 +155,7 @@ async def getRandomDogPicture():
 	pass
 
 """ Experimental Feature Related to Chatterbot Library """
-@bot.command(name="cybel")
+@bot.command(name="cybel", help="General conversation command")
 async def cybel(ctx, *args):
 	""" I am Cybel. Ask me question related of science, math and general conversation """
 	async with ctx.typing():
