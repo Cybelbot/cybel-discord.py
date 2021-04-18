@@ -12,6 +12,7 @@ https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permission
 import re
 import random
 import discord
+import datetime
 from discord import Intents
 from discord.ext import commands
 import aiohttp
@@ -22,7 +23,7 @@ import utils
 
 intents = Intents.default()
 bot = commands.Bot(command_prefix="!", intents=intents)
-
+BOTNAME= "Cybel"
 
 @bot.event
 async def on_ready():
@@ -31,9 +32,8 @@ async def on_ready():
 	print(f'{bot.user.name} is Online...')
 
 
-@bot.event
+""" @bot.event
 async def on_message(message: str):
-	""" on_message command """
 	if message.author.id == bot.user.id:
 		return
 	msg_content = message.content.lower()
@@ -43,9 +43,8 @@ async def on_message(message: str):
 	if msg_content.startswith('pong'):
 		await message.channel.send("Ping")
 
-	await bot.process_commands(message)
+	await bot.process_commands(message) """
 
-import datetime
 
 @bot.command(name="server")
 async def serverInfo(ctx):
@@ -58,9 +57,51 @@ async def serverInfo(ctx):
 	embed.add_field(name="Bot Presense", value=f"{len(bot.guilds)} Servers")
 	# embed.set_thumbnail(url=f"{ctx.guild.icon}")
 	embed.set_thumbnail(url="https://pluralsight.imgix.net/paths/python-7be70baaac.png")
-
 	await ctx.send(embed=embed)
 
+
+@bot.command(name="kick", help="Kick user")
+@commands.has_permissions(kick_members=True)
+async def kick(ctx, user: discord.Member, *, reason=None):
+	""" command to kick user. check !help kick """
+	try:
+		await user.kick(reason=reason)
+		await ctx.message.delete()
+		kick = discord.Embed(title=f":boot: Kicked {user.name}!", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
+		await ctx.channel.send(embed=kick)
+	except Exception:
+		await ctx.channel.send(f"{BOTNAME} doesn't have enough permission to kick someone.")
+
+
+@bot.command(name="ban", help="command to ban user")
+@commands.has_permissions(ban_members=True)
+async def ban(ctx, member: discord.Member, *, reason=None):
+	""" command to ban user. Check !help ban """
+	try:
+		await member.ban(reason=reason)
+		ban = discord.Embed(title=f":boom: Banned {member.name}!", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
+		await ctx.message.delete()
+		await ctx.channel.send(embed=ban)
+	except Exception:
+		await ctx.channel.send(f"{BOTNAME} doesn't have enough permission to ban someone.")
+
+
+@bot.command(name="unban", help="command to unban user")
+@commands.has_permissions(administrator = True)
+async def unban(ctx, *, member_id:int):
+	""" command to unban user. check !help unban """
+	await ctx.guild.unban(discord.Object(id=member_id))
+	await ctx.send(f"Unban {member_id}")
+
+
+@bot.command()
+async def create_invite(ctx):
+	""" Create instant invite for Channel """
+	link = await ctx.channel.create_invite(max_age = 0)
+	await ctx.send("Here is an instant invite to your server: " + str(link))
+
+
+""" Commands using API """
 
 @bot.command(name="joke", help="get random jokes")
 async def getRandomJoke(ctx):

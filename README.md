@@ -16,21 +16,24 @@ Invite **Cybel** into your server
 
 ### Stable Version Commands
 
-| command name          |               Use Of commands               | Example              |
-| --------------------- | :-----------------------------------------: | :------------------- |
-| **help**              |        Get the list of all commands         | !help                |
-| **fact**              |        function to send random fact         | !fact                |
-| **joke**              |        function to send random joke         | !joke                |
-| **ping**              |  Ping-Pong function to test the bot status  | !ping                |
-| **cat**               |         Get Random picture of Cats          | !cat                 |
-| **dog**               |         Get Random picture of Dogs          | !dog                 |
-| **fox**               |          Get Random picture of Fox          | !fox                 |
-| **dice**              |          Roll a dice in ndn format          | !diceku 5d6          |
-| **gh**                |            get Github user data             | !gh <username>       |
-| **ifsc**              | Get Indian bank branch details by IFSC code | !ifsc <ifsc_code>    |
-| **weather**           |          Get Weather of your City           | !weather <city_name> |
-| **server**            |     to get the information about server     | !server              |
-| **Upcoming Commands** |              Work in progress               | Stay Tuned           |
+| command name          |               Use Of commands               | Example                    |
+| --------------------- | :-----------------------------------------: | :------------------------- |
+| **help**              |        Get the list of all commands         | !help                      |
+| **fact**              |        function to send random fact         | !fact                      |
+| **joke**              |        function to send random joke         | !joke                      |
+| **ping**              |  Ping-Pong function to test the bot status  | !ping                      |
+| **cat**               |         Get Random picture of Cats          | !cat                       |
+| **dog**               |         Get Random picture of Dogs          | !dog                       |
+| **fox**               |          Get Random picture of Fox          | !fox                       |
+| **dice**              |          Roll a dice in ndn format          | !diceku 5d6                |
+| **kick**              |        Kick user from Discord server        | !kick <user_name> <reason> |
+| **ban**               |        Ban user from Discord server         | !ban <user_name> <reason>  |
+| **unban**             |       Unban user from Discord server        | !unban <member_id>         |
+| **gh**                |            get Github user data             | !gh <username>             |
+| **ifsc**              | Get Indian bank branch details by IFSC code | !ifsc <ifsc_code>          |
+| **weather**           |          Get Weather of your City           | !weather <city_name>       |
+| **server**            |     to get the information about server     | !server                    |
+| **Upcoming Commands** |              Work in progress               | Stay Tuned                 |
 
 ### Beta Version Commands(including above)
 
