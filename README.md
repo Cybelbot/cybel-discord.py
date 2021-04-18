@@ -29,6 +29,7 @@ Invite **Cybel** into your server
 | **gh**                |            get Github user data             | !gh <username>       |
 | **ifsc**              | Get Indian bank branch details by IFSC code | !ifsc <ifsc_code>    |
 | **weather**           |          Get Weather of your City           | !weather <city_name> |
+| **server**            |     to get the information about server     | !server              |
 | **Upcoming Commands** |              Work in progress               | Stay Tuned           |
 
 ### Beta Version Commands(including above)

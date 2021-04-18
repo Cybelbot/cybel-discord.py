@@ -47,14 +47,15 @@ async def on_message(message: str):
 
 import datetime
 
-@bot.command()
-async def info(ctx):
+@bot.command(name="server")
+async def serverInfo(ctx):
 	""" Get the server information """
 	embed = discord.Embed(title=f"{ctx.guild.name}", timestamp=datetime.datetime.utcnow(), color=discord.Color.blue())
 	embed.add_field(name="Server created at", value=f"{ctx.guild.created_at}")
 	embed.add_field(name="Server Owner", value=f"{ctx.guild.owner}")
 	embed.add_field(name="Server Region", value=f"{ctx.guild.region}")
 	embed.add_field(name="Server ID", value=f"{ctx.guild.id}")
+	embed.add_field(name="Bot Presense", value=f"{len(bot.guilds)} Servers")
 	# embed.set_thumbnail(url=f"{ctx.guild.icon}")
 	embed.set_thumbnail(url="https://pluralsight.imgix.net/paths/python-7be70baaac.png")
 
@@ -104,7 +105,7 @@ async def rollTheDice(ctx, dice: str):
 
 
 @bot.command(name="coinflip", help="flip a coin")
-async def flipCoin(ctx):
+async def flipCoin(ctx, flip_number: int):
 	pass
 
 
@@ -119,7 +120,7 @@ async def getGihubUserData(ctx, username: str):
 					userData = await response.json()
 					await ctx.send(f'Name: {userData["name"]}\nPublic Repo: {userData["public_repos"]}\nFollowers: {userData["followers"]}\nLast Updated: {userData["updated_at"]}')
 				else:
-					await ctx.send(f"API is not available, Status Code {response.status}")
+					await ctx.send(f"{username} is not a github user.")
 
 
 @bot.command(name="ifsc", help="Get Indian Bank Branch details by IFSC Code")
@@ -133,7 +134,7 @@ async def getBankDataByIFSC(ctx, ifsc_code: str):
 					bankData = await response.json()
 					await ctx.send(f'Branch: {bankData["BRANCH"]}\nBank: {bankData["BANK"]}\nDistrict: {bankData["DISTRICT"]}\nState: {bankData["STATE"]}\nContact Number: {bankData["CONTACT"]}')
 				else:
-					await ctx.send(f"API is not available, Status Code {response.status}")
+					await ctx.send(f"{ifsc_code} is not a valid IFSC code.")
 
 
 @bot.command(name="weather", help="weather of world at your command")
@@ -155,7 +156,7 @@ async def getWeather(ctx, *args):
 									humidity: {weather_data["list"][0]["main"]["humidity"]}\n\
 									sea_level:{weather_data["list"][0]["main"]["sea_level"]}')
 				else:
-					await ctx.send(f"I can't find {city_name}")
+					await ctx.send(f"I can't find {city_name}.")
 
 
 @bot.command(name="dog", help="Get Random picture of dogs.")
