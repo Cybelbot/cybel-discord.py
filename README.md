@@ -21,7 +21,6 @@ Invite **Cybel** into your server
 | **help**              |        Get the list of all commands         | !help                |
 | **fact**              |        function to send random fact         | !fact                |
 | **joke**              |        function to send random joke         | !joke                |
-| **quote**             |        function to send random quote        | !quote               |
 | **ping**              |  Ping-Pong function to test the bot status  | !ping                |
 | **cat**               |         Get Random picture of Cats          | !cat                 |
 | **dog**               |         Get Random picture of Dogs          | !dog                 |

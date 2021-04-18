@@ -15,6 +15,7 @@ import discord
 from discord import Intents
 from discord.ext import commands
 import aiohttp
+import json
 
 from askme import askMe
 import utils
@@ -60,21 +61,6 @@ async def info(ctx):
 	await ctx.send(embed=embed)
 
 
-@bot.command(name="quote", help="get amazing random quote")
-async def getRandomQuote(ctx):
-	""" Get amazing random quote """
-	randomQuoteURL = 'https://zenquotes.io/api/random'
-	async with ctx.typing():
-		async with aiohttp.ClientSession() as session:
-			async with session.get(randomQuoteURL) as response:
-				if response.status == 200:
-					result = await response.json()
-					randomQuote = f'{result[0]["q"]} -**{result[0]["a"]}**'
-					await ctx.send(randomQuote)
-				else:
-					await ctx.send(f"API is not available, Status Code {response.status}")
-
-
 @bot.command(name="joke", help="get random jokes")
 async def getRandomJoke(ctx):
 	""" Get random jokes """
@@ -83,7 +69,8 @@ async def getRandomJoke(ctx):
 		async with aiohttp.ClientSession() as session:
 			async with session.get(randomJokeURL) as response:
 				if response.status == 200:
-					randomJoke = await response.json()["joke"]
+					result = await response.json()
+					randomJoke = result["joke"]
 					await ctx.send(randomJoke)
 				else:
 					await ctx.send(f"API is not available, Status Code {response.status}")
@@ -97,7 +84,8 @@ async def getRandomFact(ctx):
 		async with aiohttp.ClientSession() as session:
 			async with session.get(randomFactURL) as response:
 				if response.status == 200:
-					randomFact = await response.json()['text']
+					result = await response.json()
+					randomFact = result['text']
 					await ctx.send(randomFact)
 				else:
 					await ctx.send(f"API is not available, Status Code {response.status}")
