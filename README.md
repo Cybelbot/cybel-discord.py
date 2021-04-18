@@ -42,7 +42,7 @@ Invite **Cybel** into your server
 | ------------ | :----------------: | :---------------------------- |
 | **cybel**    | AI Enabled ChatBot | !cyble What is thermodynamics |
 
-![Conversation with Cybel](images\sample.png)
+![Conversation with Cybel](images/sample.png)
 
 for more detils check `!help <command_name>` in server.
 
