@@ -103,6 +103,17 @@ async def _unban(ctx, *, member_id: int):
     await ctx.send(f"Unban {member_id}")
 
 
+@bot.command(name="chnick", help="change nickname to users")
+@commands.has_permissions(administrator=True)
+async def _chnick(ctx, member: discord.Member, nick):
+    """ Change nicknames of the servers'members """
+    try:
+        await member.edit(nick=nick)
+        await ctx.send(f'Nickname was changed for {member.mention} ')
+    except Exception:
+        await ctx.channel.send(f"{BOTNAME} doesn't have enough permission to change nickname")
+
+
 @bot.command(name="create_invite", help='create instant invite')
 async def _create_invite(ctx):
     """ Create instant invite for Channel """

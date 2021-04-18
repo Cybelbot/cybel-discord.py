@@ -3,6 +3,15 @@
   <h2 align="center">👉 General Discord Bot implemented in Python 👈</h2>
 </p>
 
+- [Invite in Your Discord Server](#invite-in-your-discord-server)
+- [Bot Commands](#bot-commands)
+  - [Stable Version Commands](#stable-version-commands)
+  - [Beta Version Commands](#beta-version-commands)
+- [Upcoming Feature](#upcoming-feature)
+- [Support Here](#support-here)
+- [Author](#author)
+
+  
 ## Invite in Your Discord Server
 
 Invite **Cybel** into your server 
@@ -13,30 +22,33 @@ Invite **Cybel** into your server
 ## Bot Commands
 
 ### Stable Version Commands
+> Admin Level commands will require the admin permission. Assign a Admin role to the Bot.
 
-| command name          |               Use Of commands               | Example                    |
-| --------------------- | :-----------------------------------------: | :------------------------- |
-| **help**              |        Get the list of all commands         | !help                      |
-| **fact**              |        function to send random fact         | !fact                      |
-| **joke**              |        function to send random joke         | !joke                      |
-| **ping**              |  Ping-Pong function to test the bot status  | !ping                      |
-| **cat**               |         Get Random picture of Cats          | !cat                       |
-| **dog**               |         Get Random picture of Dogs          | !dog                       |
-| **fox**               |          Get Random picture of Fox          | !fox                       |
-| **dice**              |          Roll a dice in ndn format          | !diceku 5d6                |
-| **create_invite**     |            Create instant invite            | !create_invite             |
-| **kick**              |        Kick user from Discord server        | !kick <user_name> <reason> |
-| **ban**               |        Ban user from Discord server         | !ban <user_name> <reason>  |
-| **unban**             |       Unban user from Discord server        | !unban <member_id>         |
-| **gh**                |            get Github user data             | !gh <username>             |
-| **ifsc**              | Get Indian bank branch details by IFSC code | !ifsc <ifsc_code>          |
-| **weather**           |          Get Weather of your City           | !weather <city_name>       |
-| **server**            |     to get the information about server     | !server                    |
-| **Upcoming Commands** |              Work in progress               | Stay Tuned                 |
+| command name          |               Use Of commands               | Example                         |
+| --------------------- | :-----------------------------------------: | :------------------------------ |
+| **help**              |        Get the list of all commands         | !help                           |
+| **fact**              |        function to send random fact         | !fact                           |
+| **joke**              |        function to send random joke         | !joke                           |
+| **ping**              |  Ping-Pong function to test the bot status  | !ping                           |
+| **cat**               |         Get Random picture of Cats          | !cat                            |
+| **dog**               |         Get Random picture of Dogs          | !dog                            |
+| **fox**               |          Get Random picture of Fox          | !fox                            |
+| **dice**              |          Roll a dice in ndn format          | !diceku 5d6                     |
+| **create_invite**     |            Create instant invite            | !create_invite                  |
+| **kick**              |        Kick user from Discord server        | !kick <user_name> <reason>      |
+| **ban**               |        Ban user from Discord server         | !ban <user_name> <reason>       |
+| **unban**             |       Unban user from Discord server        | !unban <member_id>              |
+| **chnick**            |         Change Nicknames of Members         | !chnick <user_name> <Nick_name> |
+| **gh**                |            get Github user data             | !gh <username>                  |
+| **ifsc**              | Get Indian bank branch details by IFSC code | !ifsc <ifsc_code>               |
+| **weather**           |          Get Weather of your City           | !weather <city_name>            |
+| **server**            |     to get the information about server     | !server                         |
+| **Upcoming Commands** |              Work in progress               | Stay Tuned                      |
 
 ![Conversation with Cybel](images/sample.png)
 
-### Beta Version Commands(including above)
+### Beta Version Commands
+> Including above
 
 | command name |  Use Of commands   | Example                       |
 | ------------ | :----------------: | :---------------------------- |
@@ -57,7 +69,6 @@ for more details check `!help <command_name>` in server.
 - ~~Kick/Ban User~~
 - more...
 
-- Add/Suggest a feature by making issues.
 
 ## Support Here
 
