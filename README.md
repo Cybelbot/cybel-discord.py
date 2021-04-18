@@ -23,8 +23,10 @@ Invite **Cybel** into your server
 | **joke**              |        function to send random joke         | !joke                |
 | **quote**             |        function to send random quote        | !quote               |
 | **ping**              |  Ping-Pong function to test the bot status  | !ping                |
-| **cats**              |         Get Random picture of Cats          | !cats                |
-| **roll**              |          Roll a dice in ndn format          | !roll 5d6            |
+| **cat**               |         Get Random picture of Cats          | !cat                 |
+| **dog**               |         Get Random picture of Dogs          | !dog                 |
+| **fox**               |          Get Random picture of Fox          | !fox                 |
+| **dice**              |          Roll a dice in ndn format          | !diceku 5d6          |
 | **gh**                |            get Github user data             | !gh <username>       |
 | **ifsc**              | Get Indian bank branch details by IFSC code | !ifsc <ifsc_code>    |
 | **weather**           |          Get Weather of your City           | !weather <city_name> |

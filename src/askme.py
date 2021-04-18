@@ -22,9 +22,11 @@ def askMe(question):
 	
 	'''
 	trainer = ChatterBotCorpusTrainer(chatbot)
-	trainer.train("chatterbot.corpus.english")
+	trainer.train("chatterbot.corpus.english", "chatterbot.corpus.custom")
 	'''
 
 	bot_respose = chatbot.get_response(question)
 
 	return bot_respose
+
+print(askMe("Can you share me your source code?"))

@@ -6,7 +6,7 @@ Copyright (c) 2021 Deepak Raj
 Bot-Name:- Cybel
 Github:- https://github.com/codePerfectPlus/Cybel
 Invite-Link:-
-https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permissions=268446835&scope=bot
+https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permissions=142337&scope=bot
 
 """
 import re
@@ -79,22 +79,7 @@ async def getRandomFact(ctx):
 				await ctx.send(randomFact)
 
 
-@bot.command(name="cats", help="Get Random Pictures of Cats")
-async def getRandomcCatPicture(ctx):
-	""" Get Random Cats Picture """
-	catAPIURL = "https://thatcopy.pw/catapi/rest/"
-	async with ctx.typing():
-		async with aiohttp.ClientSession() as session:
-			async with session.get(catAPIURL) as response:
-				result = await response.json()
-
-				catPictureURL = result["url"]
-				embed = discord.Embed(title="Meow")
-				embed.set_image(url=catPictureURL)
-				await ctx.send(embed=embed)
-
-
-@bot.command(name="roll", help="roll a dice in NdN format. 5d5")
+@bot.command(name="dice", help="roll a dice in NdN format. 5d5")
 async def rollTheDice(ctx, dice: str):
 	"""Rolls a dice in NdN format."""
 	try:
@@ -104,6 +89,11 @@ async def rollTheDice(ctx, dice: str):
 
 	result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
 	await ctx.send(result)
+
+
+@bot.command(name="coinflip", help="flip a coin")
+async def flipCoin(ctx):
+	pass
 
 
 @bot.command(name="gh", help="get Github user data")
@@ -150,9 +140,52 @@ async def getWeather(ctx, *args):
 					await ctx.send(f"I can't find {city_name}")
 
 
-@bot.command(name="dogs", help="Get Random picture of dogs.")
-async def getRandomDogPicture():
-	pass
+@bot.command(name="dog", help="Get Random picture of dogs.")
+async def getRandomDogPicture(ctx):
+	dogAPIURL = "https://dog.ceo/api/breeds/image/random"
+	async with ctx.typing():
+		async with aiohttp.ClientSession() as session:
+			async with session.get(dogAPIURL) as response:
+				if response.status == 200:
+					result = await response.json()
+
+					dogPictureURL = result["message"]
+					embed = discord.Embed(title="bow! bow!")
+					embed.set_image(url=dogPictureURL)
+					embed.set_author(name="Dog API", url='https://dog.ceo/dog-api/')
+					await ctx.send(embed=embed)
+
+
+@bot.command(name="fox", help="Get Random Picture of FOx")
+async def getRandomFoxPicture(ctx):
+	foxAPIURL = 'https://randomfox.ca/floof/'
+	async with ctx.typing():
+		async with aiohttp.ClientSession() as session:
+			async with session.get(foxAPIURL) as response:
+				result = await response.json()
+
+				foxPictureURL = result["image"]
+				embed = discord.Embed(title="howls!")
+				embed.set_image(url=foxPictureURL)
+				embed.set_author(name="foxAPI", url='https://randomfox.ca/')
+				await ctx.send(embed=embed)
+
+
+@bot.command(name="cat", help="Get Random Pictures of Cats")
+async def getRandomcCatPicture(ctx):
+	""" Get Random Cats Picture """
+	catAPIURL = "https://thatcopy.pw/catapi/rest/"
+	async with ctx.typing():
+		async with aiohttp.ClientSession() as session:
+			async with session.get(catAPIURL) as response:
+				result = await response.json()
+
+				catPictureURL = result["url"]
+				embed = discord.Embed(title="Meow! Meow!")
+				embed.set_image(url=catPictureURL)
+				embed.set_author(name='catAPI', url='https://thatcopy.pw/catapi/')
+				await ctx.send(embed=embed)
+
 
 """ Experimental Feature Related to Chatterbot Library """
 @bot.command(name="cybel", help="General conversation command")
