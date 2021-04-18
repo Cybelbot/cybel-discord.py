@@ -26,6 +26,7 @@ Invite **Cybel** into your server
 | **dog**               |         Get Random picture of Dogs          | !dog                       |
 | **fox**               |          Get Random picture of Fox          | !fox                       |
 | **dice**              |          Roll a dice in ndn format          | !diceku 5d6                |
+| **create_invite**     |            Create instant invite            | !create_invite             |
 | **kick**              |        Kick user from Discord server        | !kick <user_name> <reason> |
 | **ban**               |        Ban user from Discord server         | !ban <user_name> <reason>  |
 | **unban**             |       Unban user from Discord server        | !unban <member_id>         |
@@ -37,9 +38,11 @@ Invite **Cybel** into your server
 
 ### Beta Version Commands(including above)
 
-| command name |             Use Of commands              | Example                       |
-| ------------ | :--------------------------------------: | :---------------------------- |
-| **cybel**    | Ask me Question related to science, Math | !cyble What is thermodynamics |
+| command name |  Use Of commands   | Example                       |
+| ------------ | :----------------: | :---------------------------- |
+| **cybel**    | AI Enabled ChatBot | !cyble What is thermodynamics |
+
+![Conversation with Cybel](images\sample.png)
 
 for more detils check `!help <command_name>` in server.
 
@@ -56,5 +59,6 @@ for more detils check `!help <command_name>` in server.
 ## Support Here
 
 <a href="https://www.buymeacoffee.com/codeperfectplus"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a book&emoji=📖&slug=codeperfectplus&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff"></a>
+
 
 ## Author
