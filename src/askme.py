@@ -19,12 +19,15 @@ def askMe(question):
 		input_adaptor="chatterbot.input.TerminalAdaptor",
         output_adaptor="chatterbot.output.TerminalAdaptor",
 		database_uri='sqlite:///database.sqlite3')
-	
 	'''
 	trainer = ChatterBotCorpusTrainer(chatbot)
-	trainer.train("chatterbot.corpus.english", "chatterbot.corpus.custom")
+	trainer.train(
+		"trainingData/custom",
+		"trainingData/english"
+		)
 	'''
-
 	bot_respose = chatbot.get_response(question)
 
 	return bot_respose
+
+askMe("Hello")
