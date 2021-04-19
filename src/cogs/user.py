@@ -16,7 +16,6 @@ from discord.ext import commands
 import aiohttp
 
 from src.utils import utils
-from src.utils import askme
 
 
 class UserCommands(commands.Cog):
@@ -184,14 +183,6 @@ class UserCommands(commands.Cog):
     async def flip_the_coin(self, ctx):
         flip = "Head" if random.randint(0, 1) == 0 else "Tail"
         await ctx.send(flip)
-
-    @commands.command(name="cybel", help="General conversation command")
-    async def cybel(self, ctx, *args):
-        """ I am Cybel. Ask me question related of science, math and general conversation """
-        async with ctx.typing():
-            user_question = ' '.join(args)
-            bot_response = askme.askMe(user_question)
-            await ctx.send(bot_response)
 
 
 def setup(bot: commands.Bot):

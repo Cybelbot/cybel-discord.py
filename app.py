@@ -27,6 +27,7 @@ bot = commands.Bot(command_prefix="!",
 bot.load_extension("src.cogs.admin")
 bot.load_extension("src.cogs.user")
 bot.load_extension("src.cogs.auto")
+bot.load_extension("src.cogs.experimental")
 
 if __name__ == '__main__':
     bot.run(TOKEN)
