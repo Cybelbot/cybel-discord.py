@@ -1,7 +1,8 @@
 from chatterbot import ChatBot
 from chatterbot.trainers import ChatterBotCorpusTrainer
+import utils
 
-BOTNAME = "Cybel"
+BOTNAME = utils.BOTNAME
 
 def askMe(question):
 	chatbot = ChatBot(BOTNAME,

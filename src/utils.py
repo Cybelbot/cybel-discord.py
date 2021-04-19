@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+BOTNAME = "Cybel"
+
 print(f'Discord Version : {discord.__version__}')
 
 # environment variables 
