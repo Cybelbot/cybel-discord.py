@@ -21,7 +21,11 @@ from askme import askMe
 import utils
 
 intents = Intents.default()
-bot = commands.Bot(command_prefix="!", intents=intents)
+bot = commands.Bot(command_prefix="!",
+                   intents=intents,
+                   case_insensitive=True,
+                   )
+
 BOTNAME = "Cybel"
 
 
@@ -34,17 +38,17 @@ async def on_ready():
 
 """ @bot.event
 async def on_message(message: str):
-    # custom command to trigger on message
-    if message.author.id == bot.user.id:
-        return
-    msg_content = message.contesnt.lower()
+	# custom command to trigger on message
+	if message.author.id == bot.user.id:
+		return
+	msg_content = message.contesnt.lower()
 
-    if msg_content.startswith('ping'):
-        await message.channel.send("Pong")
-    if msg_content.startswith('pong'):
-        await message.channel.send("Ping")
+	if msg_content.startswith('ping'):
+		await message.channel.send("Pong")
+	if msg_content.startswith('pong'):
+		await message.channel.send("Ping")
 
-    await bot.process_commands(message) """
+	await bot.process_commands(message) """
 
 
 @bot.command(name="server")
@@ -60,7 +64,7 @@ async def _serverInfo(ctx):
     embed.add_field(name="Bot Presense", value=f"{len(bot.guilds)} Servers")
     embed.set_thumbnail(url=f"{ctx.guild.icon}")
     embed.set_thumbnail(
-        url="https://pluralsight.imgix.net/paths/python-7be70baaac.png")
+        url="https://cdn3.iconfinder.com/data/icons/chat-bot-emoji-filled-color/300/35618308Untitled-3-512.png")
     await ctx.send(embed=embed)
 
 
@@ -88,7 +92,8 @@ async def _ban(ctx, member: discord.Member, *, reason=None):
     """ command to ban user. Check !help ban """
     try:
         await member.ban(reason=reason)
-        ban = discord.Embed(title=f":boom: Banned {member.name}!", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
+        ban = discord.Embed(
+            title=f":boom: Banned {member.name}!", description=f"Reason: {reason}\nBy: {ctx.author.mention}")
         await ctx.message.delete()
         await ctx.send(embed=ban)
     except Exception:
@@ -119,7 +124,7 @@ async def _create_invite(ctx):
     """ Create instant invite for Channel """
     link = await ctx.channel.create_invite(max_age=0)
     currentUser = ctx.author
-    await ctx.send(f"Hi! {currentUser.mention} \nHere is an instant invite to your server: \n{str(link)}" )
+    await ctx.send(f"Hi! {currentUser.mention} \nHere is an instant invite to your server: \n{str(link)}")
 
 
 # Command using external APIs
@@ -202,12 +207,12 @@ async def _getWeather(ctx, *args):
                     weather_data = await response.json()
 
                     await ctx.send(f'{city_name.title()} - Country: {weather_data["city"]["country"]}\n'
-                                    f'Temp: {round(weather_data["list"][0]["main"]["temp"] -273.0)}\n'
-                                    f'Minimum Temp: {round(weather_data["list"][0]["main"]["temp_min"] -273.0)}\n'
-                                    f'Maximum Temp: {round(weather_data["list"][0]["main"]["temp_max"] -273.0)}\n'
-                                    f'Pressure: {weather_data["list"][0]["main"]["pressure"]}\n'
-                                    f'Humidity: {weather_data["list"][0]["main"]["humidity"]}\n'
-                                    f'Sea-Level:{weather_data["list"][0]["main"]["sea_level"]}')
+                                   f'Temp: {round(weather_data["list"][0]["main"]["temp"] -273.0)}\n'
+                                   f'Minimum Temp: {round(weather_data["list"][0]["main"]["temp_min"] -273.0)}\n'
+                                   f'Maximum Temp: {round(weather_data["list"][0]["main"]["temp_max"] -273.0)}\n'
+                                   f'Pressure: {weather_data["list"][0]["main"]["pressure"]}\n'
+                                   f'Humidity: {weather_data["list"][0]["main"]["humidity"]}\n'
+                                   f'Sea-Level:{weather_data["list"][0]["main"]["sea_level"]}')
                 else:
                     await ctx.send(f"I can't find {city_name}.")
 
