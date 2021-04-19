@@ -74,7 +74,7 @@ class AdminCommands(commands.Cog):
         try:
             await ctx.guild.unban(discord.Object(id=member_id))
             await ctx.send(f"Unban {member_id}")
-        eexcept Exception as e:
+        except Exception as e:
             await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
     @commands.command()
