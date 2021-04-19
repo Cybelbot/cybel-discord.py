@@ -11,6 +11,7 @@ https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permission
 """
 import discord
 from discord.ext import commands
+import aiohttp
 
 
 class AutoCommands(commands.Cog):
@@ -24,7 +25,24 @@ class AutoCommands(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
-        await member.send("welcome to Server!")
+        picture_api = 'http://shibe.online/api/shibes?count=1&urls=true'
+        async with aiohttp.ClientSession() as session:
+            async with session.get(picture_api) as response:
+                if response.status == 200:
+                    result = await response.json()
+
+                    random_picture = result[0]
+                    channel = member.guild.system_channel
+                    if channel is not None:
+                        welcome_msg = discord.Embed(title="Welcome",
+                                                    description=f"welcome {member.mention}, Introduce yourself to community.")
+                        welcome_msg.set_thumbnail(
+                            url="https://cdn3.iconfinder.com/data/icons/chat-bot-emoji-filled-color/300/35618308Untitled-3-512.png")
+                        welcome_msg.set_image(url=random_picture)
+                        welcome_msg.set_footer(
+                            text="Image credit to https://shibe.online/")
+                        await channel.send(embed=welcome_msg)
+                        await member.send("welcome to Server!")
 
 
 def setup(bot: commands.Bot):

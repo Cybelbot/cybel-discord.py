@@ -12,7 +12,7 @@ import discord
 from discord.ext import commands
 
 
-class AdminCommands(commands.Cog):
+class AdminCommands(commands.Cog, name="Commands only for Admin"):
     """ Admin Level Commands """
 
     def __init__(self, bot):

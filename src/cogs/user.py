@@ -18,7 +18,7 @@ import aiohttp
 from src.utils import utils
 
 
-class UserCommands(commands.Cog):
+class UserCommands(commands.Cog, name="Commands for Users Use"):
     """ User Commands """
 
     def __init__(self, bot):
@@ -89,8 +89,8 @@ class UserCommands(commands.Cog):
     async def get_weather(self, ctx, *args):
         """ Get Your City weather example:- !weather New Delhi"""
         city_name = ' '.join(args)
+        weather_api = f"http://api.openweathermap.org/data/2.5/forecast?q={city_name}&appid={utils.WEATHER_API_KEY}"
         async with ctx.typing():
-            weather_api = f"http://api.openweathermap.org/data/2.5/forecast?q={city_name}&appid={utils.WEATHER_API_KEY}"
             async with aiohttp.ClientSession() as session:
                 async with session.get(weather_api) as response:
                     if response.status == 200:
@@ -132,7 +132,6 @@ class UserCommands(commands.Cog):
                 async with session.get(fox_api) as response:
                     if response.status == 200:
                         result = await response.json()
-
                         fox_picture_url = result["image"]
                         embed = discord.Embed(title="howls!")
                         embed.set_image(url=fox_picture_url)
@@ -183,6 +182,27 @@ class UserCommands(commands.Cog):
     async def flip_the_coin(self, ctx):
         flip = "Head" if random.randint(0, 1) == 0 else "Tail"
         await ctx.send(flip)
+
+    @commands.command(name="server", help="Get the server information")
+    async def server_info(self, ctx):
+        """ Get the server information """
+        try:
+            embed = discord.Embed(title=f"{ctx.guild.name}",
+                                  timestamp=datetime.datetime.utcnow(),
+                                  color=discord.Color.blue())
+            embed.add_field(name="Server created at",
+                            value=f"{ctx.guild.created_at}")
+            embed.add_field(name="Server Owner", value=f"{ctx.guild.owner}")
+            embed.add_field(name="Server Region", value=f"{ctx.guild.region}")
+            embed.add_field(name="Server ID", value=f"{ctx.guild.id}")
+            embed.add_field(name="Bot Presense",
+                            value=f"{len(bot.guilds)} Servers")
+            embed.set_thumbnail(url=f"{ctx.guild.icon}")
+            embed.set_thumbnail(
+                url="https://cdn3.iconfinder.com/data/icons/chat-bot-emoji-filled-color/300/35618308Untitled-3-512.png")
+            await ctx.send(embed=embed)
+        except Exception as e:
+            await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
 
 def setup(bot: commands.Bot):

@@ -29,14 +29,14 @@ Invite **Cybel** into your server
 
 #### **Admin Commands**
 
-| command name          |            Use Of commands             | Example                         |
-| --------------------- | :------------------------------------: | :------------------------------ |
-| **kick**              |     Kick user from Discord server      | !kick <user_name> <reason>      |
-| **ban**               |      Ban user from Discord server      | !ban <user_name> <reason>       |
-| **unban**             |     Unban user from Discord server     | !unban <member_id>              |
-| **mute**              |  mute the user in your discord server  | !mute <user_name>               |
-| **unmute**            | Unmute the user in your discord server | !unmute <user_name>             |
-| **chnick**            |      Change Nicknames of Members       | !chnick <user_name> <Nick_name> |
+| command name |            Use Of commands             | Example                         |
+| ------------ | :------------------------------------: | :------------------------------ |
+| **kick**     |     Kick user from Discord server      | !kick <user_name> <reason>      |
+| **ban**      |      Ban user from Discord server      | !ban <user_name> <reason>       |
+| **unban**    |     Unban user from Discord server     | !unban <member_id>              |
+| **mute**     |  mute the user in your discord server  | !mute <user_name>               |
+| **unmute**   | Unmute the user in your discord server | !unmute <user_name>             |
+| **chnick**   |      Change Nicknames of Members       | !chnick <user_name> <Nick_name> |
 
 #### **User Commands**
 
@@ -67,6 +67,7 @@ Invite **Cybel** into your server
 | command name |  Use Of commands   | Example                       |
 | ------------ | :----------------: | :---------------------------- |
 | **cybel**    | AI Enabled ChatBot | !cyble What is thermodynamics |
+| **c**        | aliases of !cybel  | !c What is thermodynamics     |
 
 ![Conversation with Cybel](images/sample2.png)
 
