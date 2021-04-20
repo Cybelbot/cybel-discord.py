@@ -33,14 +33,12 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
         """
         joke_api = 'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single'
         async with ctx.typing():
-            async with aiohttp.ClientSession() as session:
-                async with session.get(joke_api) as response:
-                    if response.status == 200:
-                        result = await response.json()
-                        random_joke = result["joke"]
-                        await ctx.send(random_joke)
-                    else:
-                        await ctx.send(f"API is not available, Status Code {response.status}")
+            try:
+                result = await utils._fetch(joke_api)
+                random_joke = result["joke"]
+                await ctx.send(random_joke)
+            except Exception as e:
+                await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
     @commands.command(name="fact")
     async def get_random_fact(self, ctx):
@@ -51,14 +49,12 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
         """
         fact_api = 'https://uselessfacts.jsph.pl//random.json?language=en'
         async with ctx.typing():
-            async with aiohttp.ClientSession() as session:
-                async with session.get(fact_api) as response:
-                    if response.status == 200:
-                        result = await response.json()
-                        radnom_fact = result['text']
-                        await ctx.send(radnom_fact)
-                    else:
-                        await ctx.send(f"API is not available, Status Code {response.status}")
+            try:
+                result = await utils._fetch(fact_api)
+                radnom_fact = result['text']
+                await ctx.send(radnom_fact)
+            except Exception as e:
+                await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
     @commands.command(name="gh")
     async def get_github_userdata(self, ctx, username: str):
@@ -67,18 +63,16 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
         command: !gh <user_name>
         API: https://api.github.com
         """
+        git_api = f'https://api.github.com/users/{username}'
         async with ctx.typing():
-            git_api = f'https://api.github.com/users/{username}'
-            async with aiohttp.ClientSession() as session:
-                async with session.get(git_api) as response:
-                    if response.status == 200:
-                        user_data = await response.json()
-                        await ctx.send(f'Name: {user_data["name"]}\n'
-                                       f'Public Repo: {user_data["public_repos"]}\n'
-                                       f'Followers: {user_data["followers"]}\n'
-                                       f'Last Updated: {user_data["updated_at"]}')
-                    else:
-                        await ctx.send(f"{username} is not a github user.")
+            try:
+                user_data = await utils._fetch(git_api)
+                await ctx.send(f'Name: {user_data["name"]}\n'
+                               f'Public Repo: {user_data["public_repos"]}\n'
+                               f'Followers: {user_data["followers"]}\n'
+                               f'Last Updated: {user_data["updated_at"]}')
+            except Exception as e:
+                await ctx.send(f'{username} is not a GitHub user.')
 
     @commands.command(name="ifsc")
     async def get_bankdata(self, ctx, ifsc_code: str):
@@ -89,17 +83,15 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
         """
         razorpay_api = f"https://ifsc.razorpay.com/{ifsc_code}"
         async with ctx.typing():
-            async with aiohttp.ClientSession() as session:
-                async with session.get(razorpay_api) as response:
-                    if response.status == 200:
-                        bank_data = await response.json()
-                        await ctx.send(f'Branch: {bank_data["BRANCH"]}\n'
-                                       f'Bank: {bank_data["BANK"]}\n'
-                                       f'District: {bank_data["DISTRICT"]}\n'
-                                       f'State: {bank_data["STATE"]}\n'
-                                       f'Contact Number: {bank_data["CONTACT"]}')
-                    else:
-                        await ctx.send(f"{ifsc_code} is not a valid IFSC code.")
+            try:
+                bank_data = await utils._fetch(razorpay_api)
+                await ctx.send(f'Branch: {bank_data["BRANCH"]}\n'
+                               f'Bank: {bank_data["BANK"]}\n'
+                               f'District: {bank_data["DISTRICT"]}\n'
+                               f'State: {bank_data["STATE"]}\n'
+                               f'Contact Number: {bank_data["CONTACT"]}')
+            except Exception:
+                await ctx.send(f'{ifsc_code} is not a valid Ifsc Code.')
 
     @commands.command(name="weather")
     async def get_weather(self, ctx, *args):
@@ -111,20 +103,17 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
         city_name = ' '.join(args)
         weather_api = f"http://api.openweathermap.org/data/2.5/forecast?q={city_name}&appid={utils.WEATHER_API_KEY}"
         async with ctx.typing():
-            async with aiohttp.ClientSession() as session:
-                async with session.get(weather_api) as response:
-                    if response.status == 200:
-                        weather_data = await response.json()
-
-                        await ctx.send(f'{city_name.title()} - Country: {weather_data["city"]["country"]}\n'
-                                       f'Temp: {round(weather_data["list"][0]["main"]["temp"] -273.0)}\n'
-                                       f'Minimum Temp: {round(weather_data["list"][0]["main"]["temp_min"] -273.0)}\n'
-                                       f'Maximum Temp: {round(weather_data["list"][0]["main"]["temp_max"] -273.0)}\n'
-                                       f'Pressure: {weather_data["list"][0]["main"]["pressure"]}\n'
-                                       f'Humidity: {weather_data["list"][0]["main"]["humidity"]}\n'
-                                       f'Sea-Level:{weather_data["list"][0]["main"]["sea_level"]}')
-                    else:
-                        await ctx.send(f"I can't find {city_name}.")
+            try:
+                weather_data = await utils._fetch(weather_api)
+                await ctx.send(f'{city_name.title()} - Country: {weather_data["city"]["country"]}\n'
+                               f'Temp: {round(weather_data["list"][0]["main"]["temp"] -273.0)}\n'
+                               f'Minimum Temp: {round(weather_data["list"][0]["main"]["temp_min"] -273.0)}\n'
+                               f'Maximum Temp: {round(weather_data["list"][0]["main"]["temp_max"] -273.0)}\n'
+                               f'Pressure: {weather_data["list"][0]["main"]["pressure"]}\n'
+                               f'Humidity: {weather_data["list"][0]["main"]["humidity"]}\n'
+                               f'Sea-Level:{weather_data["list"][0]["main"]["sea_level"]}')
+            except Exception:
+                await ctx.send(f'I am not able to find the {city_name}.')
 
     @commands.command(name="dog")
     async def get_random_dog_picture(self, ctx):
@@ -135,19 +124,17 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
         """
         dog_api = "https://dog.ceo/api/breeds/image/random"
         async with ctx.typing():
-            async with aiohttp.ClientSession() as session:
-                async with session.get(dog_api) as response:
-                    if response.status == 200:
-                        result = await response.json()
+            try:
+                result = await utils._fetch(dog_api)
 
-                        dog_picture_url = result["message"]
-                        embed = discord.Embed(title="bow! bow!")
-                        embed.set_image(url=dog_picture_url)
-                        embed.set_author(
-                            name="Dog API", url='https://dog.ceo/dog-api/')
-                        await ctx.send(embed=embed)
-                    else:
-                        await ctx.send(f"API is not available, Status Code {response.status}")
+                dog_picture_url = result["message"]
+                embed = discord.Embed(title="bow! bow!")
+                embed.set_image(url=dog_picture_url)
+                embed.set_author(
+                    name="Dog API", url='https://dog.ceo/dog-api/')
+                await ctx.send(embed=embed)
+            except Exception as e:
+                await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
     @commands.command(name="fox")
     async def get_random_fox_picture(self, ctx):
@@ -158,18 +145,17 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
         """
         fox_api = 'https://randomfox.ca/floof/'
         async with ctx.typing():
-            async with aiohttp.ClientSession() as session:
-                async with session.get(fox_api) as response:
-                    if response.status == 200:
-                        result = await response.json()
-                        fox_picture_url = result["image"]
-                        embed = discord.Embed(title="howls!")
-                        embed.set_image(url=fox_picture_url)
-                        embed.set_author(
-                            name="foxAPI", url='https://randomfox.ca/')
-                        await ctx.send(embed=embed)
-                    else:
-                        await ctx.send(f"API is not available, Status Code {response.status}")
+            try:
+                result = await utils._fetch(fox_api)
+
+                fox_picture_url = result["image"]
+                embed = discord.Embed(title="howls!")
+                embed.set_image(url=fox_picture_url)
+                embed.set_author(
+                    name="foxAPI", url='https://randomfox.ca/')
+                await ctx.send(embed=embed)
+            except Exception as e:
+                await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
     @commands.command(name="cat")
     async def get_random_cat_picture(self, ctx):
@@ -180,19 +166,17 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
         """
         cat_api = "https://thatcopy.pw/catapi/rest/"
         async with ctx.typing():
-            async with aiohttp.ClientSession() as session:
-                async with session.get(cat_api) as response:
-                    if response.status == 200:
-                        result = await response.json()
+            try:
+                result = await utils._fetch(cat_api)
 
-                        cat_picture_url = result["url"]
-                        embed = discord.Embed(title="Meow! Meow!")
-                        embed.set_image(url=cat_picture_url)
-                        embed.set_author(
-                            name='catAPI', url='https://thatcopy.pw/catapi/')
-                        await ctx.send(embed=embed)
-                    else:
-                        await ctx.send(f"API is not available, Status Code {response.status}")
+                cat_picture_url = result["url"]
+                embed = discord.Embed(title="Meow! Meow!")
+                embed.set_image(url=cat_picture_url)
+                embed.set_author(
+                    name='catAPI', url='https://thatcopy.pw/catapi/')
+                await ctx.send(embed=embed)
+            except Exception as e:
+                await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
     @commands.command(name="create_invite")
     async def create_invite(self, ctx):
