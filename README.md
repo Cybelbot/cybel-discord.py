@@ -43,7 +43,7 @@ Invite **Cybel** into your server
 > User Level commands.
 
 | command name      |               Use Of commands               | Example              |
-| ----------------- | :-----------------------------------------: | :------------------- |
+| :---------------- | :-----------------------------------------: | :------------------- |
 | **help**          |        Get the list of all commands         | !help                |
 | **fact**          |        function to send random fact         | !fact                |
 | **joke**          |        function to send random joke         | !joke                |

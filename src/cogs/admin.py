@@ -12,7 +12,7 @@ import discord
 from discord.ext import commands
 
 
-class AdminCommands(commands.Cog, name="Commands only for Admin"):
+class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Commands"):
     """ Admin Level Commands """
 
     def __init__(self, bot):
@@ -21,7 +21,11 @@ class AdminCommands(commands.Cog, name="Commands only for Admin"):
     @commands.command()
     @commands.has_permissions(kick_members=True)
     async def kick(self, ctx, member: discord.Member, *, reason=None):
-        """ command to kick user."""
+        """ command to kick user
+        
+        command: !kick <member_name> <reason_to_kick>
+        output: function will remove user from server with embed message.
+        """
         await ctx.message.delete()
         try:
             await member.kick(reason=reason)
@@ -34,7 +38,14 @@ class AdminCommands(commands.Cog, name="Commands only for Admin"):
     @commands.command()
     @commands.has_permissions(administrator=True)
     async def mute(self, ctx, member: discord.Member):
-        """ Mute the user for voice activity """
+        """ Mute the user for voice activity 
+        
+        command: !mute <member_name>
+        output: It will mute the voice channel connected memeber.
+        user should be connected to the voice channel.
+
+        Cybel Need administrator access for mute command.
+        """
         await ctx.message.delete()
         try:
             await member.edit(mute=True)
@@ -45,7 +56,13 @@ class AdminCommands(commands.Cog, name="Commands only for Admin"):
     @commands.command()
     @commands.has_permissions(administrator=True)
     async def unmute(self, ctx, member: discord.Member):
-        """ Unmute the user for voice activity """
+        """ Unmute the user for voice activity 
+        
+        command: !unmute <member_name>
+        output: It will unmute the voice channel connected memeber.
+
+        Cybel Need administrator access for mute command.
+        """
         await ctx.message.delete()
         try:
             await member.edit(unmute=True)
@@ -59,7 +76,8 @@ class AdminCommands(commands.Cog, name="Commands only for Admin"):
         """ command to ban user
         
         command: !ban <member> <reason>
-         """
+        Cybel Need ban_members access for ban command.
+        """
         await ctx.message.delete()
         try:
             await member.ban(reason=reason)
@@ -75,7 +93,8 @@ class AdminCommands(commands.Cog, name="Commands only for Admin"):
         """ command to unban user.
         
         command: !unban <member_id>
-         """
+        Cybel Need administrator access for Unban command.
+        """
         await ctx.message.delete()
         try:
             await ctx.guild.unban(discord.Object(id=member_id))
@@ -89,6 +108,7 @@ class AdminCommands(commands.Cog, name="Commands only for Admin"):
         """ Change nicknames of the servers'members 
         
         command: !chnick <member> <new_nickname>
+        Cybel Need administrator access for change Nicknames.
         """
         await ctx.message.delete()
         try:
