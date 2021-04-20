@@ -19,9 +19,20 @@ class ExperimentalCommands(commands.Cog, name="Experimetal Commands"):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="cybel", aliases=["c"], help="AI Enabled ChatBot")
+    @commands.command(name="cybel", aliases=["c"])
     async def cybel(self, ctx, *args):
-        """ I am Cybel. Ask me question related of science, math and general conversation """
+        """ AI Enabled Chatbot
+        
+        commands: !cybel
+        aliase command: !c
+        
+        Example:
+        input: !cybel Hello
+        cybel: Hi
+        -------------------
+        input: !cybel What is value of PI?
+        cybel: Pi = 3.14
+        """
         async with ctx.typing():
             user_question = ' '.join(args)
             try:

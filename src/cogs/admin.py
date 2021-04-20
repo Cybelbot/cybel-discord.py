@@ -56,7 +56,10 @@ class AdminCommands(commands.Cog, name="Commands only for Admin"):
     @commands.command()
     @commands.has_permissions(ban_members=True)
     async def ban(self, ctx, member: discord.Member, *, reason=None):
-        """ command to ban user. Check !help ban """
+        """ command to ban user
+        
+        command: !ban <member> <reason>
+         """
         await ctx.message.delete()
         try:
             await member.ban(reason=reason)
@@ -69,7 +72,10 @@ class AdminCommands(commands.Cog, name="Commands only for Admin"):
     @commands.command()
     @commands.has_permissions(administrator=True)
     async def unban(self, ctx, *, member_id: int):
-        """ command to unban user. check !help unban """
+        """ command to unban user.
+        
+        command: !unban <member_id>
+         """
         await ctx.message.delete()
         try:
             await ctx.guild.unban(discord.Object(id=member_id))
@@ -80,7 +86,10 @@ class AdminCommands(commands.Cog, name="Commands only for Admin"):
     @commands.command()
     @commands.has_permissions(administrator=True)
     async def chnick(self, ctx, member: discord.Member, nick):
-        """ Change nicknames of the servers'members """
+        """ Change nicknames of the servers'members 
+        
+        command: !chnick <member> <new_nickname>
+        """
         await ctx.message.delete()
         try:
             await member.edit(nick=nick)

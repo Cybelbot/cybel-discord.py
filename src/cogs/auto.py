@@ -39,10 +39,9 @@ class AutoCommands(commands.Cog):
                         welcome_msg.set_thumbnail(
                             url="https://cdn3.iconfinder.com/data/icons/chat-bot-emoji-filled-color/300/35618308Untitled-3-512.png")
                         welcome_msg.set_image(url=random_picture)
-                        welcome_msg.set_footer(
-                            text="Image credit to https://shibe.online/")
+                        welcome_msg.set_footer(text="Image credit: https://shibe.online/")
                         await channel.send(embed=welcome_msg)
-                        await member.send("welcome to Server!")
+                        await member.send("welcome to the Server!\nPlease introduce yourself in server.")
 
 
 def setup(bot: commands.Bot):

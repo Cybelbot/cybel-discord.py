@@ -24,9 +24,13 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(name="joke", help="get random jokes")
+    @commands.command(name="joke")
     async def get_random_joke(self, ctx):
-        """ Get random jokes """
+        """ Get random jokes 
+
+        command: !joke
+        API: https://v2.jokeapi.dev/
+        """
         joke_api = 'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit&type=single'
         async with ctx.typing():
             async with aiohttp.ClientSession() as session:
@@ -38,9 +42,13 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
                     else:
                         await ctx.send(f"API is not available, Status Code {response.status}")
 
-    @commands.command(name="fact", help="get amazing random fact")
+    @commands.command(name="fact")
     async def get_random_fact(self, ctx):
-        """ Get amazing random fact """
+        """ Get amazing random fact 
+
+        command: !fact
+        API: https://uselessfacts.jsph.pl
+        """
         fact_api = 'https://uselessfacts.jsph.pl//random.json?language=en'
         async with ctx.typing():
             async with aiohttp.ClientSession() as session:
@@ -52,9 +60,13 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
                     else:
                         await ctx.send(f"API is not available, Status Code {response.status}")
 
-    @commands.command(name="gh", help="get Github user data")
+    @commands.command(name="gh")
     async def get_github_userdata(self, ctx, username: str):
-        """ Get Github User Data Using !gh username """
+        """ Get Github User Data Using 
+
+        command: !gh <user_name>
+        API: https://api.github.com
+        """
         async with ctx.typing():
             git_api = f'https://api.github.com/users/{username}'
             async with aiohttp.ClientSession() as session:
@@ -68,9 +80,13 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
                     else:
                         await ctx.send(f"{username} is not a github user.")
 
-    @commands.command(name="ifsc", help="Get Indian Bank Branch details by IFSC Code")
+    @commands.command(name="ifsc")
     async def get_bankdata(self, ctx, ifsc_code: str):
-        """ Get Bank Details by IFSC CODE In INdia !ifsc <ifsc_code> """
+        """ Get Indian Bank Details by IFSC Code
+
+        command: !ifsc <ifsc_code>
+        API: https://ifsc.razorpay.com
+        """
         razorpay_api = f"https://ifsc.razorpay.com/{ifsc_code}"
         async with ctx.typing():
             async with aiohttp.ClientSession() as session:
@@ -85,9 +101,13 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
                     else:
                         await ctx.send(f"{ifsc_code} is not a valid IFSC code.")
 
-    @commands.command(name="weather", help="weather of world at your command")
+    @commands.command(name="weather")
     async def get_weather(self, ctx, *args):
-        """ Get Your City weather example:- !weather New Delhi"""
+        """ Get Your City weather
+
+        command: !weather <city_name>
+        API: https://openweathermap.org/
+        """
         city_name = ' '.join(args)
         weather_api = f"http://api.openweathermap.org/data/2.5/forecast?q={city_name}&appid={utils.WEATHER_API_KEY}"
         async with ctx.typing():
@@ -106,8 +126,13 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
                     else:
                         await ctx.send(f"I can't find {city_name}.")
 
-    @commands.command(name="dog", help="Get Random picture of dogs.")
+    @commands.command(name="dog")
     async def get_random_dog_picture(self, ctx):
+        """ Get Random Pictures Of Dogs
+
+        command: !dog
+        API: https://dog.ceo
+        """
         dog_api = "https://dog.ceo/api/breeds/image/random"
         async with ctx.typing():
             async with aiohttp.ClientSession() as session:
@@ -124,8 +149,13 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
                     else:
                         await ctx.send(f"API is not available, Status Code {response.status}")
 
-    @commands.command(name="fox", help="Get Random Picture of FOx")
+    @commands.command(name="fox")
     async def get_random_fox_picture(self, ctx):
+        """ Get Random Picture of Foxes 
+
+        command: !fox
+        API: https://randomfox.ca
+        """
         fox_api = 'https://randomfox.ca/floof/'
         async with ctx.typing():
             async with aiohttp.ClientSession() as session:
@@ -141,9 +171,13 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
                     else:
                         await ctx.send(f"API is not available, Status Code {response.status}")
 
-    @commands.command(name="cat", help="Get Random Pictures of Cats")
+    @commands.command(name="cat")
     async def get_random_cat_picture(self, ctx):
-        """ Get Random Cats Picture """
+        """ Get Random Pictures of cats
+
+        Command: !cat
+        Api: https://thatcopy.pw/catapi/rest/
+        """
         cat_api = "https://thatcopy.pw/catapi/rest/"
         async with ctx.typing():
             async with aiohttp.ClientSession() as session:
@@ -160,16 +194,28 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
                     else:
                         await ctx.send(f"API is not available, Status Code {response.status}")
 
-    @commands.command(name="create_invite", help="create server invite")
+    @commands.command(name="create_invite")
     async def create_invite(self, ctx):
-        """ Create instant invite for Channel """
+        """ Create instant invite for Channel 
+
+        command: !create_invite
+        output: instant server invite
+        """
         link = await ctx.channel.create_invite(max_age=0)
         current_user = ctx.author
         await ctx.send(f"Hi! {current_user.mention} \nHere is an instant invite to your server: \n{str(link)}")
 
-    @commands.command(name="dice", help="roll a dice in NdN format. 5d5")
+    @commands.command(name="dice")
     async def roll_the_dice(self, ctx, dice: str):
-        """Rolls a dice in NdN format."""
+        """Rolls a dice in NdN format.
+
+        command: !dice NdN
+
+        number of rolls-d-number of limit
+
+        input: 6d5
+        output example: 2, 1, 4, 3, 5
+        """
         try:
             rolls, limit = map(int, dice.split('d'))
         except Exception:
@@ -178,14 +224,23 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
         result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
         await ctx.send(result)
 
-    @commands.command(name="flipcoin", help="flip a coin")
+    @commands.command(name="flipcoin")
     async def flip_the_coin(self, ctx):
+        """ Flip the coin randomly 
+
+        command: !flipcoin
+        output: Head/Tail
+        """
         flip = "Head" if random.randint(0, 1) == 0 else "Tail"
         await ctx.send(flip)
 
-    @commands.command(name="server", help="Get the server information")
+    @commands.command(name="server")
     async def server_info(self, ctx):
-        """ Get the server information """
+        """ Get the server information 
+
+        command: !server
+        output: Embed server information
+        """
         try:
             embed = discord.Embed(title=f"{ctx.guild.name}",
                                   timestamp=datetime.datetime.utcnow(),

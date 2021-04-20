@@ -14,8 +14,6 @@ from discord.ext import commands
 
 from src.utils import utils
 
-TOKEN = utils.TOKEN
-
 intents = Intents.default()
 intents.members = True
 
@@ -25,9 +23,9 @@ bot = commands.Bot(command_prefix="!",
 
 # load cogs
 bot.load_extension("src.cogs.admin")
-bot.load_extension("src.cogs.user")
 bot.load_extension("src.cogs.auto")
 bot.load_extension("src.cogs.experimental")
+bot.load_extension("src.cogs.user")
 
 if __name__ == '__main__':
-    bot.run(TOKEN)
+    bot.run(utils.TOKEN)
