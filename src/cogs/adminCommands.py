@@ -120,6 +120,65 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
         except Exception as e:
             await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def create_category(self, ctx, category: str):
+        """ Command for create category in Guild/Channel 
+        
+        it will not override the previous category.
+        """
+        guild = ctx.guild
+        await guild.create_category(category)
+
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def create_text_channel(self, ctx, channel: str, category: discord.CategoryChannel=None):
+        """ command for create text channel in Guild/Channel
+
+        input: channel, category name
+
+        it will not override the previous channel
+        if category is not provided so It will make a channel without category.
+
+        create category to make channel under it using !create_category
+        """
+        guild = ctx.guild
+        if category is None:
+            await guild.create_text_channel(channel)    
+        await guild.create_text_channel(channel, category=category)
+
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def delete_text_channel(self, ctx, channel: discord.TextChannel):
+        await ctx.send(f"")
+        await channel.delete()
+
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def delete_voice_channel(self, ctx, channel: discord.VoiceChannel):
+        await channel.delete()
+    
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def delete_category(self, ctx, category: discord.CategoryChannel):
+        await category.delete()
+
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def create_voice_channel(self, ctx, channel: str, category: discord.CategoryChannel=None):
+        """ command for create voice channel in Guild/Channel
+
+        input: channel, category name
+
+        it will not override the previous channel
+        if category is not provided so It will make a channel without category.
+
+        create category to make channel under it using !create_category
+        """
+        guild = ctx.guild
+        if category is None:
+            await guild.create_text_channel(channel)    
+        await guild.create_voice_channel(channel, category=category)
 
 def setup(bot: commands.Bot):
     bot.add_cog(AdminCommands(bot))

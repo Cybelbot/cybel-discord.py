@@ -32,7 +32,7 @@ class OtherCommands(commands.Cog, name="User Useful Commands"):
         command: !create_invite
         output: instant server invite
         """
-        link = await ctx.channel.create_invite(max_age=0)
+        link = await ctx.channel.create_invite(unique=False)
         current_user = ctx.author
         await ctx.send(f"Hi! {current_user.mention} \nHere is an instant invite to your server: \n{str(link)}")
 

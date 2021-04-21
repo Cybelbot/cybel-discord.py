@@ -29,11 +29,16 @@ cog_dict = {
     'Other Commands': 'src.cogs.otherCommands'
 }
 
-
-for key, value in cog_dict.items():
-    print(f'[INFO]: Loading... {key}')
-    bot.load_extension(value)
+def load_cogs(cog_dict: dict):
+    """ Function for loading cogs """
+    try:
+        for key, value in cog_dict.items():
+            print(f'[INFO]: Loading... {key}')
+            bot.load_extension(value)
+    except Exception as e:
+        print(f'\n[INFO]: {type(e).__name__} - {e}')
 
 
 if __name__ == '__main__':
+    load_cogs(cog_dict)
     bot.run(utils.DISCORD_TOKEN)
