@@ -54,5 +54,5 @@ class AutoCommands(commands.Cog):
             await channel.send(embed=bye_msg)
 
 
-def setup(bot: commands.Bot):
+def setup(bot: commands.Cog):
     bot.add_cog(AutoCommands(bot))

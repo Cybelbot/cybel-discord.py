@@ -91,5 +91,5 @@ class OtherCommands(commands.Cog, name="User Useful Commands"):
             await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
 
-def setup(bot: commands.Bot):
+def setup(bot: commands.Cog):
     bot.add_cog(OtherCommands(bot))

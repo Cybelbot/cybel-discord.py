@@ -137,10 +137,10 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
         """ Command for delete category from server """
         await category.delete()
         await ctx.send(f"{category} got deleted from {ctx.guild} by {ctx.author.name}.")
-
+    
     @commands.command()
     @commands.has_permissions(administrator=True)
-    async def create_text_channel(self, ctx, channel: str, category: discord.CategoryChannel = None):
+    async def create_text_channel(self, ctx, channel: str, category: discord.CategoryChannel=None):
         """ command for create text channel in Guild/Channel
 
         input: channel, category name
@@ -151,12 +151,13 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
         create category to make channel under it using !create_category
         """
         guild = ctx.guild
-
+     
         if category is None:
             await guild.create_text_channel(channel)
         else:
             await guild.create_text_channel(channel, category=category)
         await ctx.send(f'{channel} got created by {ctx.author.name}')
+        
 
     @commands.command()
     @commands.has_permissions(administrator=True)
@@ -164,10 +165,11 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
         """ Command for delete text channel """
         await channel.delete()
         await ctx.send(f"{channel} got deleted from {ctx.guild} by {ctx.author.name}.")
+        
 
     @commands.command()
     @commands.has_permissions(administrator=True)
-    async def create_voice_channel(self, ctx, channel: str, category: discord.CategoryChannel = None):
+    async def create_voice_channel(self, ctx, channel: str, category: discord.CategoryChannel=None):
         """ command for create voice channel in Guild/Channel
 
         input: channel, category name
@@ -188,9 +190,9 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
     @commands.has_permissions(administrator=True)
     async def delete_voice_channel(self, ctx, channel: discord.VoiceChannel):
         """ Command for delete voice channel """
-        await ctx.send(f"{channel} got deleted from {ctx.guild} by {ctx.author.name}.")
         await channel.delete()
+        await ctx.send(f"{channel} got deleted from {ctx.guild} by {ctx.author.name}.")
 
 
-def setup(bot: commands.Bot):
+def setup(bot: commands.Cog):
     bot.add_cog(AdminCommands(bot))
