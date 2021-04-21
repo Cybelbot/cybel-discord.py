@@ -22,10 +22,11 @@ bot = commands.Bot(command_prefix="!",
                    case_insensitive=True)
 
 # load cogs
-bot.load_extension("src.cogs.admin")
-bot.load_extension("src.cogs.auto")
-bot.load_extension("src.cogs.experimental")
-bot.load_extension("src.cogs.user")
+bot.load_extension("src.cogs.autoCommands") # collection of auto triggered command like:> on_member_join
+bot.load_extension("src.cogs.adminCommands") # collection of admin commands: like:> Ban, Kick
+bot.load_extension("src.cogs.experimentalCommands") # collection of experimental commands #only in beta version
+bot.load_extension("src.cogs.apiBasedCommands") # collection of external api base commands: like:> cat api
+bot.load_extension("src.cogs.otherCommands") # collection of other useful commands
 
 if __name__ == '__main__':
     bot.run(utils.TOKEN)

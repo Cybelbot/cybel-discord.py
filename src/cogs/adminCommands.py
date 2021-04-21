@@ -13,7 +13,10 @@ from discord.ext import commands
 
 
 class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Commands"):
-    """ Admin Level Commands """
+    """ Admin Level Commands
+    
+    Some commands May Require administrator access.
+    """
 
     def __init__(self, bot):
         self.bot = bot
@@ -36,7 +39,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
             await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
     @commands.command()
-    @commands.has_permissions(administrator=True)
+    @commands.has_permissions(kick_members=True)
     async def mute(self, ctx, member: discord.Member):
         """ Mute the user for voice activity 
         
@@ -54,7 +57,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
             await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
     @commands.command()
-    @commands.has_permissions(administrator=True)
+    @commands.has_permissions(kick_members=True)
     async def unmute(self, ctx, member: discord.Member):
         """ Unmute the user for voice activity 
         
@@ -103,7 +106,7 @@ class AdminCommands(commands.Cog, name="Commands for Server Management: Admin Co
             await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
     @commands.command()
-    @commands.has_permissions(administrator=True)
+    @commands.has_permissions(manage_nicknames=True)
     async def chnick(self, ctx, member: discord.Member, nick):
         """ Change nicknames of the servers'members 
         

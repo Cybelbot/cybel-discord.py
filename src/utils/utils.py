@@ -30,3 +30,14 @@ async def _fetch(url):
         async with session.get(url) as response:
             if response.status == 200:
                 return await response.json()
+
+weather_image_list = [
+                    'https://cdn.discordapp.com/attachments/831943037936467985/834165838545551380/image.jpg',
+                    'https://cdn.discordapp.com/attachments/831943037936467985/834166839264149504/2019mexicoweather-forecast-v02.jpg',
+                    'https://cdn.discordapp.com/attachments/831943037936467985/834166849309769758/Austria2020weather-forecast-v02.jpg',
+                    'https://cdn.discordapp.com/attachments/831943037936467985/834166850169471067/Germany_weather.jpg',
+                    'https://cdn.discordapp.com/attachments/831943037936467985/834166848202735657/image_2.jpg',
+                    'https://cdn.discordapp.com/attachments/831943037936467985/834166848404324379/image_1.jpg',
+                    'https://cdn.discordapp.com/attachments/831943037936467985/834166851226304552/image_3.jpg',
+                    'https://cdn.discordapp.com/attachments/831943037936467985/834166851587801108/image_4.jpg',
+                ]

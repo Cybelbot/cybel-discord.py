@@ -11,14 +11,15 @@ https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permission
 """
 import random
 import discord
-import datetime
 from discord.ext import commands
 import aiohttp
+from datetime import datetime
 
+# lcoal imports
 from src.utils import utils
 
 
-class UserCommands(commands.Cog, name="Commands for Users Use"):
+class APIBaseUserCommands(commands.Cog, name="External API Based User Commands"):
     """ User Commands """
 
     def __init__(self, bot):
@@ -105,13 +106,20 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
         async with ctx.typing():
             try:
                 weather_data = await utils._fetch(weather_api)
-                await ctx.send(f'{city_name.title()} - Country: {weather_data["city"]["country"]}\n'
-                               f'Temp: {round(weather_data["list"][0]["main"]["temp"] -273.0)}\n'
-                               f'Minimum Temp: {round(weather_data["list"][0]["main"]["temp_min"] -273.0)}\n'
-                               f'Maximum Temp: {round(weather_data["list"][0]["main"]["temp_max"] -273.0)}\n'
-                               f'Pressure: {weather_data["list"][0]["main"]["pressure"]}\n'
-                               f'Humidity: {weather_data["list"][0]["main"]["humidity"]}\n'
-                               f'Sea-Level:{weather_data["list"][0]["main"]["sea_level"]}')
+                weather_embed = discord.Embed(title=f'{weather_data["city"]["name"]}- {weather_data["city"]["country"]}', color=discord.Color.blue())
+                weather_embed.add_field(name="Weather", value=weather_data['list'][0]['weather'][0]['description'])
+                weather_embed.add_field(name='Temperature', value=round(weather_data["list"][0]["main"]["temp"] -273.0))
+                weather_embed.add_field(name='Maximum Temperature', value=round(weather_data["list"][0]["main"]["temp_max"] -273.0))
+                weather_embed.add_field(name='Minimum Temperature', value=round(weather_data["list"][0]["main"]["temp_min"] -273.0))
+                weather_embed.add_field(name="Pressure", value=weather_data["list"][0]["main"]["pressure"])
+                weather_embed.add_field(name='Humidity', value=weather_data["list"][0]["main"]["humidity"])
+                weather_embed.add_field(name='Sea Level', value=weather_data["list"][0]["main"]["sea_level"])
+                weather_embed.set_thumbnail(
+                    url=f"http://openweathermap.org/img/w/{weather_data['list'][0]['weather'][0]['icon']}.png")
+                weather_embed.set_author(
+                    name="OpenWeatherAPI", url="https://openweathermap.org/")
+                weather_embed.set_image(url=random.choice(utils.weather_image_list))
+                await ctx.send(embed=weather_embed)
             except Exception:
                 await ctx.send(f'I am not able to find the {city_name}.')
 
@@ -178,71 +186,6 @@ class UserCommands(commands.Cog, name="Commands for Users Use"):
             except Exception as e:
                 await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
 
-    @commands.command(name="create_invite")
-    async def create_invite(self, ctx):
-        """ Create instant invite for Channel 
-
-        command: !create_invite
-        output: instant server invite
-        """
-        link = await ctx.channel.create_invite(max_age=0)
-        current_user = ctx.author
-        await ctx.send(f"Hi! {current_user.mention} \nHere is an instant invite to your server: \n{str(link)}")
-
-    @commands.command(name="dice")
-    async def roll_the_dice(self, ctx, dice: str):
-        """Rolls a dice in NdN format.
-
-        command: !dice NdN
-
-        number of rolls-d-number of limit
-
-        input: 6d5
-        output example: 2, 1, 4, 3, 5
-        """
-        try:
-            rolls, limit = map(int, dice.split('d'))
-        except Exception:
-            return 'Format has to be in NdN!'
-
-        result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
-        await ctx.send(result)
-
-    @commands.command(name="flipcoin")
-    async def flip_the_coin(self, ctx):
-        """ Flip the coin randomly 
-
-        command: !flipcoin
-        output: Head/Tail
-        """
-        flip = "Head" if random.randint(0, 1) == 0 else "Tail"
-        await ctx.send(flip)
-
-    @commands.command(name="server")
-    async def server_info(self, ctx):
-        """ Get the server information 
-
-        command: !server
-        output: Embed server information
-        """
-        try:
-            embed = discord.Embed(title=f"{ctx.guild.name}",
-                                  timestamp=datetime.datetime.utcnow(),
-                                  color=discord.Color.blue())
-            embed.add_field(name="Server created at",
-                            value=f"{ctx.guild.created_at}")
-            embed.add_field(name="Server Owner", value=f"{ctx.guild.owner}")
-            embed.add_field(name="Server Region", value=f"{ctx.guild.region}")
-            embed.add_field(name="Server ID", value=f"{ctx.guild.id}")
-            embed.add_field(name="Bot Presense",
-                            value=f"{len(bot.guilds)} Servers")
-            embed.set_thumbnail(url=f"{ctx.guild.icon}")
-            embed.set_thumbnail(
-                url="https://cdn3.iconfinder.com/data/icons/chat-bot-emoji-filled-color/300/35618308Untitled-3-512.png")
-            await ctx.send(embed=embed)
-        except Exception as e:
-            await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
-
 
 def setup(bot: commands.Bot):
-    bot.add_cog(UserCommands(bot))
+    bot.add_cog(APIBaseUserCommands(bot))
