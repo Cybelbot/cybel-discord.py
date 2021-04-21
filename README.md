@@ -72,7 +72,7 @@ check !help <command_name> for command description
 | **dice**          |          Roll a dice in ndn format          | !diceku 5d6          |
 | **flipcoin**      |           Flip the coin randomly            | !flipcoin            |
 | **create_invite** |            Create instant invite            | !create_invite       |
-| **gh**            |            get Github user data             | !gh <username>       |
+| **gh**            |            get Github user data             | !gh <user_name>       |
 | **ifsc**          | Get Indian bank branch details by IFSC code | !ifsc <ifsc_code>    |
 | **weather**       |          Get Weather of your City           | !weather <city_name> |
 | **server**        |     to get the information about server     | !server              |
