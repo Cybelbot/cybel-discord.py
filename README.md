@@ -1,10 +1,13 @@
 <p align="center">
   <a href="https://py-contributors.github.io/awesomeScripts/"><img src="https://capsule-render.vercel.app/api?type=rect&color=ffdd00&height=100&section=header&text=Cybel&fontSize=80%&fontColor=ffffff" alt="website title image"></a>
+  
   <h2 align="center">👉 Discord Bot implemented in Python 👈</h2>
 </p>
 
+
+<img style="border-radius: 20%" align="right" src="images/cybel_icon.jpg" height="200" width="200" alt="pycontributors logo">
+
 - [Usages](#usages)
-- [Invite in Your Discord Server](#invite-in-your-discord-server)
 - [Bot Commands](#bot-commands)
   - [Stable Version Commands](#stable-version-commands)
     - [**Admin Commands**](#admin-commands)
@@ -22,8 +25,6 @@
 - Utility async APIs
 - Commands for user access
 - AI enabled chatbot(only in Beta Version)
-
-## Invite in Your Discord Server
 
 Invite **Cybel** into your server
 
