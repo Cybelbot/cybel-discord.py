@@ -24,7 +24,7 @@ class AutoCommands(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         await self.bot.change_presence(activity=discord.Game(name="Fornite"))
-        print(f'{self.bot.user.name} is Online...')
+        print(f'\n[INFO]: {self.bot.user.name} is Online...')
 
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):

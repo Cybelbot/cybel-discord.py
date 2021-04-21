@@ -20,7 +20,7 @@ from src.utils import utils
 
 
 class APIBaseUserCommands(commands.Cog, name="External API Based User Commands"):
-    """ User Commands """
+    """ Collection of External API Based Commands """
 
     def __init__(self, bot):
         self.bot = bot
