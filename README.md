@@ -21,7 +21,6 @@
 ## Features
 
 - Admin Commands for server management with powerful moderation
-- Reactions Roles
 - Custom welcome message for each user when join
 - Separate DM message upon joining server
 - Utility async APIs
@@ -54,7 +53,7 @@ Invite **Cybel** into your server
 | **unmute**               |      Unmute the user in your discord server       | `!unmute <user_name>`                  |
 | **chnick**               |            Change Nicknames of Members            | `!chnick <user_name> <Nick_name>`      |
 | **create_role**          |            Create New Roles in server             | `!create_role <new_role>`              |
-| give_role            |               Give role to members                | `!give_role <user_name> <role_name>`   |
+| **give_role**            |               Give role to members                | `!give_role <user_name> <role_name>`   |
 | **create_category**      |   Command for create category in Guild/Channel    | `!create_category <category_name>`     |
 | **create_text_channel**  | command for create text channel in Guild/Channel  | `!create_text_channel <Channel_name>`  |
 | **create_voice_channel** | command for create voice channel in Guild/Channel | `!create_voice_channel <channel_name>` |
@@ -108,6 +107,7 @@ for more details check `!help <command_name>` in server.
 - AI Enabled ChatBot(In Beta Version)
 - Curse word deletion
 - Role Upgrade
+- Reactions Roles
 - ~~Create Instant Invite~~
 - ~~Kick/Ban User~~
 - more...
@@ -132,7 +132,7 @@ check more at [MIT License](/LICENSE)
 
 ## Author
 
-- Project: Cybel - Discord Bot
+- Project: Cybel[Discord Bot]
 - Author: CodePerfectPlus
 - Language: Python
 - Github: [GitHub](https://github.com/codePerfectPlus)
