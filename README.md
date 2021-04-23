@@ -21,6 +21,7 @@
 ## Features
 
 - Admin Commands for server management with powerful moderation
+- Stay connected every time with 99% uptime
 - Custom welcome message for each user when join
 - Separate DM message upon joining server
 - Utility async APIs
