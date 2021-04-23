@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 '''
 MIT License
 
@@ -12,6 +13,7 @@ https://discord.com/api/oauth2/authorize?client_id=832137823309004800&permission
 from discord import Intents
 from discord.ext import commands
 
+from src.utils import logging
 from src.utils import utils
 
 intents = Intents.default()
@@ -33,10 +35,10 @@ def load_cogs(cog_dict: dict):
     """ Function for loading cogs """
     try:
         for key, value in cog_dict.items():
-            print(f'[INFO]: Loading... {key}')
+            logging.info(f'Loading... {key}')
             bot.load_extension(value)
     except Exception as e:
-        print(f'\n[INFO]: {type(e).__name__} - {e}')
+        logging.error(f'{type(e).__name__} - {e}')
 
 
 if __name__ == '__main__':

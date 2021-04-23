@@ -15,81 +15,88 @@ import datetime
 
 
 class OtherCommands(commands.Cog, name="User Useful Commands"):
-    def __init__(self, bot):
-        self.bot = bot
+	def __init__(self, bot):
+		self.bot = bot
 
-    """ @commands.command()
-    async def take_picture(self, ctx, url=None):
-        if not url:
-            url = ctx.message.attachments[0].url
+	""" @commands.command()
+	async def take_picture(self, ctx, url=None):
+		if not url:
+			url = ctx.message.attachments[0].url
 
-        print(url)
-        await ctx.send(embed=discord.Embed().set_image(url=url)) """
+		print(url)
+		await ctx.send(embed=discord.Embed().set_image(url=url)) """
 
-    @commands.command(name="create_invite")
-    async def create_invite(self, ctx):
-        """ Create instant invite for Channel 
+	@commands.command(name="create_invite")
+	async def create_invite(self, ctx):
+		""" Create instant invite for Channel
 
-        command: !create_invite
-        output: instant server invite
-        """
-        link = await ctx.channel.create_invite(unique=False)
-        current_user = ctx.author
-        await ctx.send(f"Hi! {current_user.mention} \nHere is an instant invite to your server: \n{str(link)}")
+		command: !create_invite
+		output: instant server invite
+		"""
+		link = await ctx.channel.create_invite(unique=False)
+		current_user = ctx.author
+		await ctx.send(f"Hi! {current_user.mention} \nHere is an instant invite to your server: \n{str(link)}")
 
-    @commands.command(name="dice")
-    async def roll_the_dice(self, ctx, dice: str):
-        """Rolls a dice in NdN format.
+	@commands.command()
+	async def info(self, ctx, *, member: discord.Member):
+		""" Tells you some info about the member. """
+		await ctx.send(f"{member.mention} joined on {member.joined_at} and has {len(member.roles)} role in {ctx.guild}")
 
-        command: !dice NdN
+	@commands.command(name="dice")
+	async def roll_the_dice(self, ctx, dice: str):
+		"""Rolls a dice in NdN format.
 
-        number of rolls-d-number of limit
+		command: !dice NdN
 
-        input: 6d5
-        output example: 2, 1, 4, 3, 5
-        """
-        try:
-            rolls, limit = map(int, dice.split('d'))
-        except Exception:
-            return 'Format has to be in NdN!'
+		number of rolls-d-number of limit
 
-        result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
-        await ctx.send(result)
+		input: 6d5
+		output example: 2, 1, 4, 3, 5
+		"""
+		try:
+			rolls, limit = map(int, dice.split('d'))
+		except Exception:
+			return 'Format has to be in NdN!'
 
-    @commands.command(name="flipcoin")
-    async def flip_the_coin(self, ctx):
-        """ Flip the coin randomly 
+		result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
+		await ctx.send(result)
 
-        command: !flipcoin
-        output: Head/Tail
-        """
-        flip = "Head" if random.randint(0, 1) == 0 else "Tail"
-        await ctx.send(flip)
+	@commands.command(name="flipcoin")
+	async def flip_the_coin(self, ctx):
+		""" Flip the coin randomly
 
-    @commands.command(name="server")
-    async def server_info(self, ctx):
-        """ Get the server information 
+		command: !flipcoin
+		output: Head/Tail
+		"""
+		flip = "Head" if random.randint(0, 1) == 0 else "Tail"
+		await ctx.send(flip)
 
-        command: !server
-        output: Embed server information
-        """
-        try:
-            embed = discord.Embed(title=ctx.guild.name,
-                                  timestamp=datetime.datetime.utcnow(),
-                                  color=discord.Color.blue())
-            embed.add_field(name="Server created at",
-                            value=ctx.guild.created_at)
-            embed.add_field(name="Server Owner", value=ctx.guild.owner)
-            embed.add_field(name="Server Region", value=ctx.guild.region)
-            embed.add_field(name="Server ID", value=ctx.guild.id)
-            embed.add_field(name="Bot Presense",
-                            value=f"{len(self.bot.guilds)} Servers")
-            embed.set_thumbnail(
-                url="https://cdn3.iconfinder.com/data/icons/chat-bot-emoji-filled-color/300/35618308Untitled-3-512.png")
-            await ctx.send(embed=embed)
-        except Exception as e:
-            await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+	@commands.command(name="server")
+	async def server_info(self, ctx):
+		""" Get the server information
+
+		command: !server
+		output: Embed server information
+		"""
+		try:
+			embed = discord.Embed(title=ctx.guild.name,
+								  timestamp=datetime.datetime.utcnow(),
+								  color=discord.Color.blue())
+			embed.add_field(name="Server created at",
+							value=ctx.guild.created_at)
+			embed.add_field(name="Server Owner", value=ctx.guild.owner.name)
+			embed.add_field(name="Server Region", value=ctx.guild.region)
+			embed.add_field(name="Server ID", value=ctx.guild.id)
+			embed.add_field(name="Bot Presense",
+							value=f"{len(self.bot.guilds)} Servers")
+			embed.set_thumbnail(
+				url="https://cdn.discordapp.com/attachments/831943037936467985/835036938326638622/cybel.png")
+			await ctx.send(embed=embed)
+		except Exception as e:
+			await ctx.send(f'**`ERROR:`** {type(e).__name__} - {e}')
+
 
 
 def setup(bot: commands.Cog):
-    bot.add_cog(OtherCommands(bot))
+	bot.add_cog(OtherCommands(bot))
+
