@@ -23,11 +23,11 @@
 - Admin Commands for server management with powerful moderation
 - Reactions Roles
 - Custom welcome message for each user when join
-- Seprate DM message upon joining server
+- Separate DM message upon joining server
 - Utility async APIs
 - Commands for user access
 - AI enabled chatbot(only in Beta Version)
-- Log Everything
+- Log Everything with embed message
 - AutoMod - Delete offensive word automatically[optional]
 - Use the bot to its full potential without ever annoying anyone
 - More Features coming soon...
